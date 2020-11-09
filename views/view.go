@@ -16,7 +16,7 @@ func NewView(files ...string) *View {
 
 }
 
-
+//View new view
 type View struct {
 	Template *template.Template
 } 
