@@ -1,7 +1,8 @@
 package views
 
 import (
-	"html/template"
+	"text/template"
+	"net/http"
 	"path/filepath"
 )
 
@@ -28,7 +29,12 @@ func NewView(layout string, files ...string) *View {
 type View struct {
 	Template *template.Template
 	Layout string
-} 
+}
+
+//Render is used torender the view with predefined template
+func (v *View) Render(w http.ResponseWriter, data interface{}) error{
+	return v.Template.ExecuteTemplate(w, v.Layout, data)
+}
 
 
 // Layout files return a slice of string representing
